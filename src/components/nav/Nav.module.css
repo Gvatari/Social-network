@@ -15,3 +15,7 @@
     text-decoration: none;
     color: #6c6c6c;
 }
+
+.nav ul li a.active {
+    color: #7777f2;
+}
