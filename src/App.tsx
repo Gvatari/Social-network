@@ -8,16 +8,23 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { News } from './components/news/News';
 import { Music } from './components/music/Music';
 import { Settings } from './components/settings/Settings';
+import { dialogType, messageType, postType } from '.';
 
-const App = () => {
+type AppPropsType = {
+  posts: postType[]
+  dialogs: dialogType[]
+  messages: messageType[]
+}
+
+const App = ({posts, dialogs, messages}:AppPropsType) => {
   return (
     <BrowserRouter>
       <div className="App">
         <Header />
         <Nav />
         <div className='App-wrapper-content'>
-          <Route path={'/profile'} component={Profile} />
-          <Route path={'/dialogs'} component={Dialogs} />
+          <Route path={'/profile'} component={() => <Profile posts={posts} />} />
+          <Route path={'/dialogs'} component={() => <Dialogs dialogs={dialogs} messages={messages} />} />
           <Route path={'/news'} component={News} />
           <Route path={'/music'} component={Music} />
           <Route path={'/settings'} component={Settings} />
