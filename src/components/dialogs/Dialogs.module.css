@@ -2,13 +2,3 @@
     display: grid;
     grid-template-columns: 2fr 10fr;
 }
-
-.dialog {
-    padding: 8px;
-    cursor: default;
-}
-
-.message {
-    padding: 8px;
-    cursor: default;
-}

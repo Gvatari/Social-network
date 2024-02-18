@@ -1,36 +1,40 @@
 import React from 'react';
 import s from './Dialogs.module.css'
 import { NavLink } from 'react-router-dom';
+import { Dialog } from './dialog/Dialog';
+import { Message } from './message/Message';
 
-type DilogProps = {
+type dialogType = {
     id: number
     title: string
 }
-const Dialog = ({ id, title }: DilogProps) => {
-    return <div className={s.dialog}><NavLink to={`/dialogs/${id}`}>{title}</NavLink></div>
-}
+const dialog: dialogType[] = [
+    { id: 1, title: 'Sveta' },
+    { id: 2, title: 'Igor' },
+    { id: 3, title: 'Alexey' },
+    { id: 4, title: 'Sasha' },
+    { id: 5, title: 'Pasha' },
+]
 
-type MessageProps = {
+type messageType = {
+    id: number
     message: string
 }
-const Message = ({ message }: MessageProps) => {
-    return <div className={s.message}>{message}</div>
-}
+const message: messageType[] = [
+    { id: 1, message: 'Hello' },
+    { id: 2, message: 'I am gote it' },
+    { id: 3, message: 'What ara you doing ?' },
+]
 
 export const Dialogs = () => {
     return (
         <div className={s.dilogs}>
             <div className='dialogsItems'>
-                <Dialog id={1} title='Sveta' />
-                <Dialog id={2} title='Igor' />
-                <Dialog id={3} title='Alexey' />
-                <Dialog id={4} title='Sasha' />
-                <Dialog id={5} title='Pasha' />
+                {dialog.map(d => <Dialog id={d.id} key={d.id} title={d.title} />)}
+
             </div>
             <div className='messages'>
-                <Message message={'Hello'} />
-                <Message message={'I am gote it'} />
-                <Message message={'What ara you doing ?'} />
+                {message.map(m => <Message key={m.id} message={m.message} />)}
             </div>
         </div>
     );

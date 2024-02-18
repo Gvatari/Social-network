@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React from 'react';
 import s from './Post.module.css'
 
 type PostPropsType = {
     message: string
     likes: number
 }
-export const Post: FC<PostPropsType> = ({message, likes}) => {
+export const Post = ({message, likes}: PostPropsType) => {
     return (
         <div className={s.post}>
             <img src="/images/ava-post.png" alt="#" />

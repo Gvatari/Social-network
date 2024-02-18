@@ -2,6 +2,17 @@ import React from 'react';
 import s from './Posts.module.css'
 import { Post } from './post/Post';
 
+type postType = {
+    id: number
+    message: string
+    likes: number
+}
+
+const post: postType[] = [
+    { id: 1, message: 'Hi, we are you ?', likes: 3 },
+    { id: 2, message: 'I am happiness', likes: 1 },
+]
+
 export const Posts = () => {
     return (
         <div className={s.posts}>
@@ -9,8 +20,7 @@ export const Posts = () => {
                 <textarea name='fieldPost'></textarea>
                 <button className={s.addPost}>add post</button>
             </div>
-           <Post message={'Hi, we are you ?'} likes={3} />
-           <Post message={'I am happiness'} likes={1}/>
+            {post.map(p => <Post message={p.message} key={p.id} likes={p.likes} />)}
         </div>
     );
 };
