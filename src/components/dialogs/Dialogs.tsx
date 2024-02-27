@@ -3,7 +3,7 @@ import s from './Dialogs.module.css'
 import { NavLink } from 'react-router-dom';
 import { Dialog } from './dialog/Dialog';
 import { Message } from './message/Message';
-import { dialogType, messageType } from '../..';
+import { dialogType, messageType } from '../redux/state';
 
 type DialogsPropsType = {
     dialogs: dialogType[]
