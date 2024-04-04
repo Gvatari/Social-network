@@ -8,12 +8,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { News } from './components/news/News';
 import { Music } from './components/music/Music';
 import { Settings } from './components/settings/Settings';
-import { stateType } from './components/redux/state';
-
-type AppPropsType = {
-  state: stateType
-  addPost: (message: string | undefined) => void
-}
+import { AppPropsType } from './components/redux/state';
 
 const App = ({ state, addPost }: AppPropsType) => {
   return (

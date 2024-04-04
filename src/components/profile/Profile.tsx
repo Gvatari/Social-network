@@ -5,7 +5,7 @@ import { postType } from '../redux/state';
 
 type ProfilePropsType = {
     posts: postType[]
-    addPost: (message: string | undefined) => void
+    addPost: (message: string) => void
 }
 
 export const Profile = ({posts, addPost}: ProfilePropsType) => {

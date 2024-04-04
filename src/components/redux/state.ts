@@ -1,3 +1,5 @@
+import { rerenderEntireTree } from "../../rerender"
+
 export type postType = {
     id: number
     message: string | undefined
@@ -24,6 +26,11 @@ export type stateType = {
     }
 }
 
+export type AppPropsType = {
+    state: stateType
+    addPost: (message: string) => void
+}
+
 export const state: stateType = {
     profilePage: {
         posts: [
@@ -47,10 +54,11 @@ export const state: stateType = {
     }
 }
 
-export const addPost = (message: string | undefined) => {
-    const newPost = {
-        id: 3, message, likes: 0
+export const addPost = (message: string) => {
+    const newPost: postType = {
+        id: new Date().getTime(), message, likes: 0
     }
-    debugger
     state.profilePage.posts.push(newPost);
+    console.debug(state.profilePage.posts);
+    rerenderEntireTree(state)
 }

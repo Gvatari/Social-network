@@ -1,19 +1,19 @@
-import React, { LegacyRef } from 'react';
+import React from 'react';
 import s from './Posts.module.css'
 import { Post } from './post/Post';
 import { addPost, postType } from '../../redux/state';
 
 type PostsPropsType = {
     posts: postType[]
-    addPost: (message: string | undefined) => void
+    addPost: (message: string) => void
 }
 
-const currentElementRef: LegacyRef<HTMLTextAreaElement> = React.createRef();
+const currentElementRef = React.createRef<HTMLTextAreaElement>();
 
 const addPostHandler = () => {
-    const text = currentElementRef.current?.value
-    addPost(text)
-    console.debug(text)
+    if (currentElementRef.current?.value) {
+        addPost(currentElementRef.current?.value)
+    }
 }
 
 export const Posts = ({posts}: PostsPropsType) => {
