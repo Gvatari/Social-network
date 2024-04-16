@@ -1,27 +1,26 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import s from './Posts.module.css'
 import { Post } from './post/Post';
-import { addPost, postType } from '../../redux/state';
+import { postType } from '../../redux/state';
 
 type PostsPropsType = {
+    newPostMessage: string
     posts: postType[]
-    addPost: (message: string) => void
+    addPost: () => void
+    newPostMessageEvent: (message: string) => void
 }
 
-const currentElementRef = React.createRef<HTMLTextAreaElement>();
+export const Posts = ({posts, newPostMessage, newPostMessageEvent, addPost}: PostsPropsType) => {
 
-const addPostHandler = () => {
-    if (currentElementRef.current?.value) {
-        addPost(currentElementRef.current?.value)
+    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        newPostMessageEvent(e.currentTarget.value)
     }
-}
 
-export const Posts = ({posts}: PostsPropsType) => {
     return (
         <div className={s.posts}>
             <div className={s.addPosts}>
-                <textarea ref={currentElementRef} name='fieldPost'></textarea>
-                <button className={s.addPost} onClick={addPostHandler}>add post</button>
+                <textarea value={newPostMessage} onChange={onChangeHandler} name='fieldPost'></textarea>
+                <button className={s.addPost} onClick={addPost}>add post</button>
             </div>
             {posts.map(p => <Post message={p.message} key={p.id} likes={p.likes} />)}
         </div>

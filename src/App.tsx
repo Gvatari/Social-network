@@ -10,15 +10,16 @@ import { Music } from './components/music/Music';
 import { Settings } from './components/settings/Settings';
 import { AppPropsType } from './components/redux/state';
 
-const App = ({ state, addPost }: AppPropsType) => {
+const App = ({ state, addPost, newPostMessage, newPostMessageEvent, newDilogsMessage, newDilogsMessageEvent, addMessage }: AppPropsType) => {
   return (
     <BrowserRouter>
       <div className="App">
         <Header />
         <Nav />
         <div className='App-wrapper-content'>
-          <Route path={'/profile'} component={() => <Profile addPost={addPost} posts={state.profilePage.posts} />} />
-          <Route path={'/dialogs'} component={() => <Dialogs dialogs={state.dialogsPage.dialogs} messages={state.dialogsPage.messages} />} />
+          <Route path={'/profile'} component={() => <Profile addPost={addPost}
+          newPostMessage={newPostMessage} newPostMessageEvent={newPostMessageEvent} posts={state.profilePage.posts} />} />
+          <Route path={'/dialogs'} component={() => <Dialogs newDilogsMessage={newDilogsMessage} newDilogsMessageEvent={newDilogsMessageEvent} dialogs={state.dialogsPage.dialogs} messages={state.dialogsPage.messages} addMessage={addMessage} />} />
           <Route path={'/news'} component={News} />
           <Route path={'/music'} component={Music} />
           <Route path={'/settings'} component={Settings} />

@@ -4,15 +4,17 @@ import { Posts } from './posts/Posts';
 import { postType } from '../redux/state';
 
 type ProfilePropsType = {
+    newPostMessage: string
+    newPostMessageEvent: (message: string) => void
     posts: postType[]
-    addPost: (message: string) => void
+    addPost: () => void
 }
 
-export const Profile = ({posts, addPost}: ProfilePropsType) => {
+export const Profile = ({posts, addPost, newPostMessage, newPostMessageEvent}: ProfilePropsType) => {
     return (
         <div className={s.content}>
             Content
-            <Posts addPost={addPost} posts={posts} />
+            <Posts addPost={addPost} newPostMessageEvent={newPostMessageEvent} newPostMessage={newPostMessage}  posts={posts} />
         </div>
     );
 };
