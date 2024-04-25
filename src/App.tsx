@@ -8,18 +8,22 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { News } from './components/news/News';
 import { Music } from './components/music/Music';
 import { Settings } from './components/settings/Settings';
-import { AppPropsType } from './components/redux/state';
+import { storeType } from './components/redux/state';
 
-const App = ({ state, addPost, newPostMessage, newPostMessageEvent, newDilogsMessage, newDilogsMessageEvent, addMessage }: AppPropsType) => {
+type AppPropsType = {
+  store: storeType
+}
+
+const App = ({ store }: AppPropsType) => {
   return (
     <BrowserRouter>
       <div className="App">
         <Header />
         <Nav />
         <div className='App-wrapper-content'>
-          <Route path={'/profile'} component={() => <Profile addPost={addPost}
-          newPostMessage={newPostMessage} newPostMessageEvent={newPostMessageEvent} posts={state.profilePage.posts} />} />
-          <Route path={'/dialogs'} component={() => <Dialogs newDilogsMessage={newDilogsMessage} newDilogsMessageEvent={newDilogsMessageEvent} dialogs={state.dialogsPage.dialogs} messages={state.dialogsPage.messages} addMessage={addMessage} />} />
+          <Route path={'/profile'} component={() => <Profile addPost={store.addPost.bind(store)}
+          state={store.getState()} newPostMessageEvent={store.newPostMessageEvent.bind(store)} />} />
+          <Route path={'/dialogs'} component={() => <Dialogs state={store.getState()} newDilogsMessageEvent={store.newDilogsMessageEvent.bind(store)} addMessage={store.addMessage.bind(store)} />} />
           <Route path={'/news'} component={News} />
           <Route path={'/music'} component={Music} />
           <Route path={'/settings'} component={Settings} />
